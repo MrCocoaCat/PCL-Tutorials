@@ -1,0 +1,1 @@
+using a StatisticalOutlierRemoval filter
