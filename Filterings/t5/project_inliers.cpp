@@ -29,17 +29,19 @@ int
                         << cloud->points[i].z << std::endl;
 
   // Create a set of planar coefficients with X=Y=0,Z=1
-  pcl::ModelCoefficients::Ptr coefficients (new pcl::ModelCoefficients ());
+  //定义模型对象，填充对应
+  //ax+by+cz+d = 0                   
+  pcl::ModelCoefficients::Ptr coefficients (new pcl::ModelCoefficients ()); 
   coefficients->values.resize (4);
-  coefficients->values[0] = coefficients->values[1] = 0;
-  coefficients->values[2] = 1.0;
-  coefficients->values[3] = 0;
+  coefficients->values[0] = coefficients->values[1] = 0; //a=b=0
+  coefficients->values[2] = 1.0; //c=1
+  coefficients->values[3] = 0; //d=0
 
   // Create the filtering object
-  pcl::ProjectInliers<pcl::PointXYZ> proj;
-  proj.setModelType (pcl::SACMODEL_PLANE);
+  pcl::ProjectInliers<pcl::PointXYZ> proj; //创建投影滤波对象
+  proj.setModelType (pcl::SACMODEL_PLANE); //设置好对象对应的投影模型
   proj.setInputCloud (cloud);
-  proj.setModelCoefficients (coefficients);
+  proj.setModelCoefficients (coefficients); //设置好对应系数
   proj.filter (*cloud_projected);
 
   std::cerr << "Cloud after projection: " << std::endl;
