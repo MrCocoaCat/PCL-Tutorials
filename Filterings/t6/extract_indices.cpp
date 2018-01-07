@@ -16,11 +16,13 @@ main (int argc, char** argv)
 
   // Fill in the cloud data
   pcl::PCDReader reader;
-  reader.read ("table_scene_lms400.pcd", *cloud_blob);
+  reader.read ("../table_scene_lms400.pcd", *cloud_blob);
 
   std::cerr << "PointCloud before filtering: " << cloud_blob->width * cloud_blob->height << " data points." << std::endl;
 
   // Create the filtering object: downsample the dataset using a leaf size of 1cm
+  // 进行进向下采样滤波
+
   pcl::VoxelGrid<pcl::PCLPointCloud2> sor;
   sor.setInputCloud (cloud_blob);
   sor.setLeafSize (0.01f, 0.01f, 0.01f);
@@ -32,25 +34,26 @@ main (int argc, char** argv)
   std::cerr << "PointCloud after filtering: " << cloud_filtered->width * cloud_filtered->height << " data points." << std::endl;
 
   // Write the downsampled version to disk
+
   pcl::PCDWriter writer;
   writer.write<pcl::PointXYZ> ("table_scene_lms400_downsampled.pcd", *cloud_filtered, false);
 
   pcl::ModelCoefficients::Ptr coefficients (new pcl::ModelCoefficients ());
   pcl::PointIndices::Ptr inliers (new pcl::PointIndices ());
   // Create the segmentation object
-  pcl::SACSegmentation<pcl::PointXYZ> seg;
+  pcl::SACSegmentation<pcl::PointXYZ> seg; //创建分割对象
   // Optional
-  seg.setOptimizeCoefficients (true);
+  seg.setOptimizeCoefficients (true);//设置对估计的模型参数进行优化处理
   // Mandatory
-  seg.setModelType (pcl::SACMODEL_PLANE);
-  seg.setMethodType (pcl::SAC_RANSAC);
-  seg.setMaxIterations (1000);
-  seg.setDistanceThreshold (0.01);
+  seg.setModelType (pcl::SACMODEL_PLANE);//设置分割模型类型
+  seg.setMethodType (pcl::SAC_RANSAC);//设置用哪个随机参数估计方法
+  seg.setMaxIterations (1000);//设置最大迭代次数
+  seg.setDistanceThreshold (0.01);//设置判断是否为模型内点的距离阀值
 
   // Create the filtering object
-  pcl::ExtractIndices<pcl::PointXYZ> extract;
+  pcl::ExtractIndices<pcl::PointXYZ> extract; //创建点云提取对象
 
-  int i = 0, nr_points = (int) cloud_filtered->points.size ();
+  int i = 0,nr_points = (int) cloud_filtered->points.size ();//
   // While 30% of the original cloud is still there
   while (cloud_filtered->points.size () > 0.3 * nr_points)
   {
@@ -64,10 +67,10 @@ main (int argc, char** argv)
     }
 
     // Extract the inliers
-    extract.setInputCloud (cloud_filtered);
-    extract.setIndices (inliers);
-    extract.setNegative (false);
-    extract.filter (*cloud_p);
+    extract.setInputCloud (cloud_filtered); //设置输入点云
+    extract.setIndices (inliers); //设置分割后的内点为需要提取的点集
+    extract.setNegative (false); //设置提取内点而非外点
+    extract.filter (*cloud_p); //提出输入为cloud_p
     std::cerr << "PointCloud representing the planar component: " << cloud_p->width * cloud_p->height << " data points." << std::endl;
 
     std::stringstream ss;
