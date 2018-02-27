@@ -1,0 +1,161 @@
+The system is: Windows - 5.1 - x86
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler:  
+Build flags: 
+Id flags: 
+
+The output was:
+0
+
+Microsoft (R) Visual Studio 9.0.30729.1 版。
+版权所有(C) Microsoft Corp。保留所有权利。
+1>------ 已启动生成: 项目: CompilerIdC, 配置: Debug Win32 ------
+1>正在编译...
+1>CMakeCCompilerId.c
+1>正在链接...
+1>正在嵌入清单...
+1>正在执行生成后事件...
+1>CMAKE_C_COMPILER=C:\Program Files\Microsoft Visual Studio 9.0\VC\bin\cl.exe
+1>生成日志保存在“file://e:\CD_PCL_DEMO\14\14 chapter example code\2 cylinder_segmentation\cmake-bin\CMakeFiles\2.8.10.2\CompilerIdC\Debug\BuildLog.htm”
+1>CompilerIdC - 0 个错误，0 个警告
+========== 生成: 成功 1 个，失败 0 个，最新 0 个，跳过 0 个 ==========
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.vcproj"
+
+The C compiler identification is MSVC, found in "E:/CD_PCL_DEMO/14/14 chapter example code/2 cylinder_segmentation/cmake-bin/CMakeFiles/2.8.10.2/CompilerIdC/CompilerIdC.exe"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler:  
+Build flags: 
+Id flags: 
+
+The output was:
+0
+
+Microsoft (R) Visual Studio 9.0.30729.1 版。
+版权所有(C) Microsoft Corp。保留所有权利。
+1>------ 已启动生成: 项目: CompilerIdCXX, 配置: Debug Win32 ------
+1>正在编译...
+1>CMakeCXXCompilerId.cpp
+1>正在链接...
+1>正在嵌入清单...
+1>正在执行生成后事件...
+1>CMAKE_CXX_COMPILER=C:\Program Files\Microsoft Visual Studio 9.0\VC\bin\cl.exe
+1>生成日志保存在“file://e:\CD_PCL_DEMO\14\14 chapter example code\2 cylinder_segmentation\cmake-bin\CMakeFiles\2.8.10.2\CompilerIdCXX\Debug\BuildLog.htm”
+1>CompilerIdCXX - 0 个错误，0 个警告
+========== 生成: 成功 1 个，失败 0 个，最新 0 个，跳过 0 个 ==========
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcproj"
+
+The CXX compiler identification is MSVC, found in "E:/CD_PCL_DEMO/14/14 chapter example code/2 cylinder_segmentation/cmake-bin/CMakeFiles/2.8.10.2/CompilerIdCXX/CompilerIdCXX.exe"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: E:/CD_PCL_DEMO/14/14 chapter example code/2 cylinder_segmentation/cmake-bin/CMakeFiles/CMakeTmp
+
+Run Build Command:C:\PROGRA~1\MICROS~1.0\Common7\IDE\devenv.com CMAKE_TRY_COMPILE.sln /build Debug /project cmTryCompileExec168158957
+
+Microsoft (R) Visual Studio 9.0.30729.1 版。
+版权所有(C) Microsoft Corp。保留所有权利。
+1>------ 已启动生成: 项目: cmTryCompileExec168158957, 配置: Debug Win32 ------
+1>正在编译...
+1>用于 80x86 的 Microsoft (R) 32 位 C/C++ 优化编译器 15.00.30729.01 版
+1>版权所有(C) Microsoft Corporation。保留所有权利。
+1>cl /Od /D "WIN32" /D "_WINDOWS" /D "_DEBUG" /D "CMAKE_INTDIR=\"Debug\"" /D "_MBCS" /FD /RTC1 /MDd /Fo"cmTryCompileExec168158957.dir\Debug\\" /Fd"E:\CD_PCL_DEMO\14\14 chapter example code\2 cylinder_segmentation\cmake-bin\CMakeFiles\CMakeTmp\Debug/cmTryCompileExec168158957.pdb" /W3 /c /Zi /TC   /Zm1000
+1>   ".\testCCompiler.c"
+1>testCCompiler.c
+1>正在编译资源清单...
+1>Microsoft (R) Windows (R) Resource Compiler Version 6.1.6723.1
+1>Copyright (C) Microsoft Corporation.  All rights reserved.
+1>正在链接...
+1>正在嵌入清单...
+1>Microsoft (R) Windows (R) Resource Compiler Version 6.1.6723.1
+1>Copyright (C) Microsoft Corporation.  All rights reserved.
+1>生成日志保存在“file://e:\CD_PCL_DEMO\14\14 chapter example code\2 cylinder_segmentation\cmake-bin\CMakeFiles\CMakeTmp\cmTryCompileExec168158957.dir\Debug\BuildLog.htm”
+1>cmTryCompileExec168158957 - 0 个错误，0 个警告
+========== 生成: 成功 1 个，失败 0 个，最新 0 个，跳过 0 个 ==========
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: E:/CD_PCL_DEMO/14/14 chapter example code/2 cylinder_segmentation/cmake-bin/CMakeFiles/CMakeTmp
+
+Run Build Command:C:\PROGRA~1\MICROS~1.0\Common7\IDE\devenv.com CMAKE_TRY_COMPILE.sln /build Debug /project cmTryCompileExec2683500716
+
+Microsoft (R) Visual Studio 9.0.30729.1 版。
+版权所有(C) Microsoft Corp。保留所有权利。
+1>------ 已启动生成: 项目: cmTryCompileExec2683500716, 配置: Debug Win32 ------
+1>正在编译...
+1>用于 80x86 的 Microsoft (R) 32 位 C/C++ 优化编译器 15.00.30729.01 版
+1>版权所有(C) Microsoft Corporation。保留所有权利。
+1>cl /Od /D "WIN32" /D "_WINDOWS" /D "_DEBUG" /D "CMAKE_INTDIR=\"Debug\"" /D "_MBCS" /FD /RTC1 /MDd /Fo"cmTryCompileExec2683500716.dir\Debug\\" /Fd"E:\CD_PCL_DEMO\14\14 chapter example code\2 cylinder_segmentation\cmake-bin\CMakeFiles\CMakeTmp\Debug/cmTryCompileExec2683500716.pdb" /W3 /c /Zi /TC   /Zm1000
+1>   "C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCCompilerABI.c"
+1>CMakeCCompilerABI.c
+1>正在编译资源清单...
+1>Microsoft (R) Windows (R) Resource Compiler Version 6.1.6723.1
+1>Copyright (C) Microsoft Corporation.  All rights reserved.
+1>正在链接...
+1>正在嵌入清单...
+1>Microsoft (R) Windows (R) Resource Compiler Version 6.1.6723.1
+1>Copyright (C) Microsoft Corporation.  All rights reserved.
+1>生成日志保存在“file://e:\CD_PCL_DEMO\14\14 chapter example code\2 cylinder_segmentation\cmake-bin\CMakeFiles\CMakeTmp\cmTryCompileExec2683500716.dir\Debug\BuildLog.htm”
+1>cmTryCompileExec2683500716 - 0 个错误，0 个警告
+========== 生成: 成功 1 个，失败 0 个，最新 0 个，跳过 0 个 ==========
+
+
+Determining if the CXX compiler works passed with the following output:
+Change Dir: E:/CD_PCL_DEMO/14/14 chapter example code/2 cylinder_segmentation/cmake-bin/CMakeFiles/CMakeTmp
+
+Run Build Command:C:\PROGRA~1\MICROS~1.0\Common7\IDE\devenv.com CMAKE_TRY_COMPILE.sln /build Debug /project cmTryCompileExec2653926918
+
+Microsoft (R) Visual Studio 9.0.30729.1 版。
+版权所有(C) Microsoft Corp。保留所有权利。
+1>------ 已启动生成: 项目: cmTryCompileExec2653926918, 配置: Debug Win32 ------
+1>正在编译...
+1>用于 80x86 的 Microsoft (R) 32 位 C/C++ 优化编译器 15.00.30729.01 版
+1>版权所有(C) Microsoft Corporation。保留所有权利。
+1>cl /Od /D "WIN32" /D "_WINDOWS" /D "_DEBUG" /D "CMAKE_INTDIR=\"Debug\"" /D "_MBCS" /FD /EHsc /RTC1 /MDd /Fo"cmTryCompileExec2653926918.dir\Debug\\" /Fd"E:\CD_PCL_DEMO\14\14 chapter example code\2 cylinder_segmentation\cmake-bin\CMakeFiles\CMakeTmp\Debug/cmTryCompileExec2653926918.pdb" /W3 /c /Zi /TP   /Zm1000
+1>   ".\testCXXCompiler.cxx"
+1>testCXXCompiler.cxx
+1>正在编译资源清单...
+1>Microsoft (R) Windows (R) Resource Compiler Version 6.1.6723.1
+1>Copyright (C) Microsoft Corporation.  All rights reserved.
+1>正在链接...
+1>正在嵌入清单...
+1>Microsoft (R) Windows (R) Resource Compiler Version 6.1.6723.1
+1>Copyright (C) Microsoft Corporation.  All rights reserved.
+1>生成日志保存在“file://e:\CD_PCL_DEMO\14\14 chapter example code\2 cylinder_segmentation\cmake-bin\CMakeFiles\CMakeTmp\cmTryCompileExec2653926918.dir\Debug\BuildLog.htm”
+1>cmTryCompileExec2653926918 - 0 个错误，0 个警告
+========== 生成: 成功 1 个，失败 0 个，最新 0 个，跳过 0 个 ==========
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: E:/CD_PCL_DEMO/14/14 chapter example code/2 cylinder_segmentation/cmake-bin/CMakeFiles/CMakeTmp
+
+Run Build Command:C:\PROGRA~1\MICROS~1.0\Common7\IDE\devenv.com CMAKE_TRY_COMPILE.sln /build Debug /project cmTryCompileExec439865600
+
+Microsoft (R) Visual Studio 9.0.30729.1 版。
+版权所有(C) Microsoft Corp。保留所有权利。
+1>------ 已启动生成: 项目: cmTryCompileExec439865600, 配置: Debug Win32 ------
+1>正在编译...
+1>用于 80x86 的 Microsoft (R) 32 位 C/C++ 优化编译器 15.00.30729.01 版
+1>版权所有(C) Microsoft Corporation。保留所有权利。
+1>cl /Od /D "WIN32" /D "_WINDOWS" /D "_DEBUG" /D "CMAKE_INTDIR=\"Debug\"" /D "_MBCS" /FD /EHsc /RTC1 /MDd /Fo"cmTryCompileExec439865600.dir\Debug\\" /Fd"E:\CD_PCL_DEMO\14\14 chapter example code\2 cylinder_segmentation\cmake-bin\CMakeFiles\CMakeTmp\Debug/cmTryCompileExec439865600.pdb" /W3 /c /Zi /TP   /Zm1000
+1>   "C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCXXCompilerABI.cpp"
+1>CMakeCXXCompilerABI.cpp
+1>正在编译资源清单...
+1>Microsoft (R) Windows (R) Resource Compiler Version 6.1.6723.1
+1>Copyright (C) Microsoft Corporation.  All rights reserved.
+1>正在链接...
+1>正在嵌入清单...
+1>Microsoft (R) Windows (R) Resource Compiler Version 6.1.6723.1
+1>Copyright (C) Microsoft Corporation.  All rights reserved.
+1>生成日志保存在“file://e:\CD_PCL_DEMO\14\14 chapter example code\2 cylinder_segmentation\cmake-bin\CMakeFiles\CMakeTmp\cmTryCompileExec439865600.dir\Debug\BuildLog.htm”
+1>cmTryCompileExec439865600 - 0 个错误，0 个警告
+========== 生成: 成功 1 个，失败 0 个，最新 0 个，跳过 0 个 ==========
+
+

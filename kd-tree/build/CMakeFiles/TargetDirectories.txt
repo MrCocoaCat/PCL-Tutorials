@@ -1,3 +1,0 @@
-/home/liyubo/Code/PCL-Tutorials/kd-tree/build/CMakeFiles/edit_cache.dir
-/home/liyubo/Code/PCL-Tutorials/kd-tree/build/CMakeFiles/rebuild_cache.dir
-/home/liyubo/Code/PCL-Tutorials/kd-tree/build/CMakeFiles/kdtree_search.dir
