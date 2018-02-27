@@ -36,12 +36,13 @@ main ()
 {
     pcl::PointCloud<pcl::PointXYZRGBA>::Ptr cloud (new pcl::PointCloud<pcl::PointXYZRGBA>);
     pcl::io::loadPCDFile ("my_point_cloud.pcd", *cloud);
-    
+    cout<<"s"<<endl;
+    //pcl::io::loadPCDFile ("home/liyubo/Code/PCL-Tutorials/table_scene_lms400.pcd", *cloud);
     pcl::visualization::CloudViewer viewer("Cloud Viewer");
     
     //blocks until the cloud is actually rendered
     viewer.showCloud(cloud);
-    
+    cout<<"s"<<endl;
     //use the following functions to get access to the underlying more advanced/powerful
     //PCLVisualizer
     
