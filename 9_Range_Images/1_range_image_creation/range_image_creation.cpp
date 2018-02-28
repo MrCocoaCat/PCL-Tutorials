@@ -1,7 +1,7 @@
-#include <pcl/range_image/range_image.h>
+ï»¿#include <pcl/range_image/range_image.h>
 int main (int argc, char** argv) {
   pcl::PointCloud<pcl::PointXYZ> pointCloud;
- //Éú³ÉÊı¾İ
+ //ç”Ÿæˆæ•°æ®
   for (float y=-0.5f; y<=0.5f; y+=0.01f) {
     for (float z=-0.5f; z<=0.5f; z+=0.01f) {
       pcl::PointXYZ point;
@@ -13,13 +13,13 @@ int main (int argc, char** argv) {
   }
   pointCloud.width = (uint32_t) pointCloud.points.size();
   pointCloud.height = 1;
-//ÒÔ1¶ÈÎª½Ç·Ö±æÂÊ£¬´ÓÉÏÃæ´´½¨µÄµãÔÆ´´½¨Éî¶ÈÍ¼Ïñ¡£
+//ä»¥1åº¦ä¸ºè§’åˆ†è¾¨ç‡ï¼Œä»ä¸Šé¢åˆ›å»ºçš„ç‚¹äº‘åˆ›å»ºæ·±åº¦å›¾åƒã€‚
   float angularResolution = (float) (  1.0f * (M_PI/180.0f));  
-// 1¶È×ª»¡¶È
+// 1åº¦è½¬å¼§åº¦
   float maxAngleWidth     = (float) (360.0f * (M_PI/180.0f));  
-// 360.0¶È×ª»¡¶È
+// 360.0åº¦è½¬å¼§åº¦
   float maxAngleHeight    = (float) (180.0f * (M_PI/180.0f)); 
-// 180.0¶È×ª»¡¶È
+// 180.0åº¦è½¬å¼§åº¦
   Eigen::Affine3f sensorPose = (Eigen::Affine3f)Eigen::Translation3f(0.0f, 0.0f, 0.0f);
   pcl::RangeImage::CoordinateFrame coordinate_frame = pcl::RangeImage::CAMERA_FRAME;
   float noiseLevel=0.00;

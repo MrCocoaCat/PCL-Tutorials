@@ -1,4 +1,4 @@
-#include <pcl/point_types.h>
+ï»¿#include <pcl/point_types.h>
 #include <pcl/point_cloud.h>
 #include <pcl/common/common.h>
 #include <pcl/common/transforms.h>
@@ -249,7 +249,7 @@ main (int argc, char** argv)
     {
       p.addText (ss.str (), 20, 30, 1, 0, 0, ss.str (), viewport);  // display the text with red
 
-      // Create a red line£¨´´½¨Ò»ÌõºìÏß£©
+      // Create a red lineï¼ˆåˆ›å»ºä¸€æ¡çº¢çº¿ï¼‰
       pcl::PointXYZ min_p, max_p;
       pcl::getMinMax3D (*cloud_xyz_demean, min_p, max_p);
       std::stringstream line_name;
@@ -263,10 +263,10 @@ main (int argc, char** argv)
     // Increase the font size for the score*
     p.setShapeRenderingProperties (pcl::visualization::PCL_VISUALIZER_FONT_SIZE, 18, ss.str (), viewport);
 
-    // Add the cluster name£¨Ìí¼Ó¾ÛÀàÃû³Æ£©
+    // Add the cluster nameï¼ˆæ·»åŠ èšç±»åç§°ï¼‰
     p.addText (cloud_name, 20, 10, cloud_name, viewport);
   }
-  // Add coordianate systems to all viewports£¨¸øËùÓĞµÄ´°¿ÚÌí¼Ó×ø±êÏµÍ³£©
+  // Add coordianate systems to all viewportsï¼ˆç»™æ‰€æœ‰çš„çª—å£æ·»åŠ åæ ‡ç³»ç»Ÿï¼‰
   p.addCoordinateSystem (0.1, 0);
 
   p.spin ();

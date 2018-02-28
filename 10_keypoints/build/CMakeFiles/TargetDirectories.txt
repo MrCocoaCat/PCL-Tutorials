@@ -1,3 +1,0 @@
-/home/liyubo/Code/PCL-Tutorials/10_keypoints/build/CMakeFiles/edit_cache.dir
-/home/liyubo/Code/PCL-Tutorials/10_keypoints/build/CMakeFiles/rebuild_cache.dir
-/home/liyubo/Code/PCL-Tutorials/10_keypoints/build/CMakeFiles/narf_keypoint_extraction.dir
