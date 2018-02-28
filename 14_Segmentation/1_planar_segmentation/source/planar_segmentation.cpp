@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <pcl/ModelCoefficients.h>
 #include <pcl/io/pcd_io.h>
 #include <pcl/point_types.h>
@@ -9,18 +9,18 @@ int
 main (int argc, char** argv)
 {
   pcl::PointCloud<pcl::PointXYZ> cloud;
-//Ìî³äµãÔÆÊı¾İ
+//å¡«å……ç‚¹äº‘æ•°æ®
 cloud.width  = 15;
   cloud.height = 1;
   cloud.points.resize (cloud.width * cloud.height);
-//Éú³ÉÊı¾İ
+//ç”Ÿæˆæ•°æ®
 for (size_t i = 0; i < cloud.points.size (); ++i)
   {
     cloud.points[i].x = 1024 * rand () / (RAND_MAX + 1.0f);
     cloud.points[i].y = 1024 * rand () / (RAND_MAX + 1.0f);
     cloud.points[i].z = 1.0;
   }
-//ÉèÖÃ¼¸¸ö¾ÖÍâµã
+//è®¾ç½®å‡ ä¸ªå±€å¤–ç‚¹
 cloud.points[0].z = 2.0;
 cloud.points[3].z = -2.0;
 cloud.points[6].z = 4.0;
@@ -31,11 +31,11 @@ for (size_t i = 0; i < cloud.points.size (); ++i)
 << cloud.points[i].z << std::endl;
 pcl::ModelCoefficients::Ptr coefficients (new pcl::ModelCoefficients);
 pcl::PointIndices::Ptr inliers (new pcl::PointIndices);
-//´´½¨·Ö¸î¶ÔÏó
+//åˆ›å»ºåˆ†å‰²å¯¹è±¡
   pcl::SACSegmentation<pcl::PointXYZ> seg;
- //¿ÉÑ¡ÉèÖÃ
+ //å¯é€‰è®¾ç½®
   seg.setOptimizeCoefficients (true);
-//±ØĞëÉèÖÃ
+//å¿…é¡»è®¾ç½®
 seg.setModelType (pcl::SACMODEL_PLANE);
   seg.setMethodType (pcl::SAC_RANSAC);
   seg.setDistanceThreshold (0.01);

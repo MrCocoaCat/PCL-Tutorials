@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <pcl/io/pcd_io.h>
 #include <pcl/point_types.h>
 #include <pcl/registration/ndt.h>
@@ -8,7 +8,7 @@
 int
 main (int argc, char** argv)
 {
-  //¼ÓÔØ·¿¼äµÄµÚÒ»´ÎÉ¨Ãè
+  //åŠ è½½æˆ¿é—´çš„ç¬¬ä¸€æ¬¡æ‰«æ
   pcl::PointCloud<pcl::PointXYZ>::Ptr target_cloud (new pcl::PointCloud<pcl::PointXYZ>);
   if (pcl::io::loadPCDFile<pcl::PointXYZ> ("room_scan1.pcd", *target_cloud) == -1)
   {
@@ -16,7 +16,7 @@ main (int argc, char** argv)
     return (-1);
   }
   std::cout << "Loaded " << target_cloud->size () << " data points from room_scan1.pcd" << std::endl;
-  //¼ÓÔØ´ÓĞÂÊÓ½ÇµÃµ½µÄ·¿¼äµÄµÚ¶ş´ÎÉ¨Ãè
+  //åŠ è½½ä»æ–°è§†è§’å¾—åˆ°çš„æˆ¿é—´çš„ç¬¬äºŒæ¬¡æ‰«æ
   pcl::PointCloud<pcl::PointXYZ>::Ptr input_cloud (new pcl::PointCloud<pcl::PointXYZ>);
   if (pcl::io::loadPCDFile<pcl::PointXYZ> ("room_scan2.pcd", *input_cloud) == -1)
   {
@@ -24,7 +24,7 @@ main (int argc, char** argv)
     return (-1);
   }
   std::cout << "Loaded " << input_cloud->size () << " data points from room_scan2.pcd" << std::endl;
-  //½«ÊäÈëµÄÉ¨Ãè¹ıÂËµ½Ô­Ê¼³ß´çµÄ´ó¸Å10%ÒÔÌá¸ßÆ¥ÅäµÄËÙ¶È¡£
+  //å°†è¾“å…¥çš„æ‰«æè¿‡æ»¤åˆ°åŸå§‹å°ºå¯¸çš„å¤§æ¦‚10%ä»¥æé«˜åŒ¹é…çš„é€Ÿåº¦ã€‚
   pcl::PointCloud<pcl::PointXYZ>::Ptr filtered_cloud (new pcl::PointCloud<pcl::PointXYZ>);
   pcl::ApproximateVoxelGrid<pcl::PointXYZ> approximate_voxel_filter;
   approximate_voxel_filter.setLeafSize (0.2, 0.2, 0.2);
@@ -32,54 +32,54 @@ main (int argc, char** argv)
   approximate_voxel_filter.filter (*filtered_cloud);
   std::cout << "Filtered cloud contains " << filtered_cloud->size ()
             << " data points from room_scan2.pcd" << std::endl;
-  //³õÊ¼»¯ÕıÌ¬·Ö²¼±ä»»£¨NDT£©
+  //åˆå§‹åŒ–æ­£æ€åˆ†å¸ƒå˜æ¢ï¼ˆNDTï¼‰
   pcl::NormalDistributionsTransform<pcl::PointXYZ, pcl::PointXYZ> ndt;
-  //ÉèÖÃÒÀÀµ³ß¶ÈNDT²ÎÊı
-  //ÎªÖÕÖ¹Ìõ¼şÉèÖÃ×îĞ¡×ª»»²îÒì
+  //è®¾ç½®ä¾èµ–å°ºåº¦NDTå‚æ•°
+  //ä¸ºç»ˆæ­¢æ¡ä»¶è®¾ç½®æœ€å°è½¬æ¢å·®å¼‚
   ndt.setTransformationEpsilon (0.01);
-  //ÎªMore-ThuenteÏßËÑË÷ÉèÖÃ×î´ó²½³¤
+  //ä¸ºMore-Thuenteçº¿æœç´¢è®¾ç½®æœ€å¤§æ­¥é•¿
   ndt.setStepSize (0.1);
-  //ÉèÖÃNDTÍø¸ñ½á¹¹µÄ·Ö±æÂÊ£¨VoxelGridCovariance£©
+  //è®¾ç½®NDTç½‘æ ¼ç»“æ„çš„åˆ†è¾¨ç‡ï¼ˆVoxelGridCovarianceï¼‰
   ndt.setResolution (1.0);
-  //ÉèÖÃÆ¥Åäµü´úµÄ×î´ó´ÎÊı
+  //è®¾ç½®åŒ¹é…è¿­ä»£çš„æœ€å¤§æ¬¡æ•°
   ndt.setMaximumIterations (35);
-  // ÉèÖÃÒªÅä×¼µÄµãÔÆ
+  // è®¾ç½®è¦é…å‡†çš„ç‚¹äº‘
   ndt.setInputCloud (filtered_cloud);
-  //ÉèÖÃµãÔÆÅä×¼Ä¿±ê
+  //è®¾ç½®ç‚¹äº‘é…å‡†ç›®æ ‡
   ndt.setInputTarget (target_cloud);
-  //ÉèÖÃÊ¹ÓÃ»úÆ÷ÈË²â¾à·¨µÃµ½µÄ³õÊ¼¶Ô×¼¹À¼Æ½á¹û
+  //è®¾ç½®ä½¿ç”¨æœºå™¨äººæµ‹è·æ³•å¾—åˆ°çš„åˆå§‹å¯¹å‡†ä¼°è®¡ç»“æœ
   Eigen::AngleAxisf init_rotation (0.6931, Eigen::Vector3f::UnitZ ());
   Eigen::Translation3f init_translation (1.79387, 0.720047, 0);
   Eigen::Matrix4f init_guess = (init_translation * init_rotation).matrix ();
-  //¼ÆËãĞèÒªµÄ¸ÕÌå±ä»»ÒÔ±ã½«ÊäÈëµÄµãÔÆÆ¥Åäµ½Ä¿±êµãÔÆ
+  //è®¡ç®—éœ€è¦çš„åˆšä½“å˜æ¢ä»¥ä¾¿å°†è¾“å…¥çš„ç‚¹äº‘åŒ¹é…åˆ°ç›®æ ‡ç‚¹äº‘
   pcl::PointCloud<pcl::PointXYZ>::Ptr output_cloud (new pcl::PointCloud<pcl::PointXYZ>);
   ndt.align (*output_cloud, init_guess);
   std::cout << "Normal Distributions Transform has converged:" << ndt.hasConverged ()
             << " score: " << ndt.getFitnessScore () << std::endl;
-  //Ê¹ÓÃ´´½¨µÄ±ä»»¶ÔÎ´¹ıÂËµÄÊäÈëµãÔÆ½øĞĞ±ä»»
+  //ä½¿ç”¨åˆ›å»ºçš„å˜æ¢å¯¹æœªè¿‡æ»¤çš„è¾“å…¥ç‚¹äº‘è¿›è¡Œå˜æ¢
   pcl::transformPointCloud (*input_cloud, *output_cloud, ndt.getFinalTransformation ());
-  //±£´æ×ª»»µÄÊäÈëµãÔÆ
+  //ä¿å­˜è½¬æ¢çš„è¾“å…¥ç‚¹äº‘
   pcl::io::savePCDFileASCII ("room_scan2_transformed.pcd", *output_cloud);
-  // ³õÊ¼»¯µãÔÆ¿ÉÊÓ»¯½çÃæ
+  // åˆå§‹åŒ–ç‚¹äº‘å¯è§†åŒ–ç•Œé¢
   boost::shared_ptr<pcl::visualization::PCLVisualizer>
   viewer_final (new pcl::visualization::PCLVisualizer ("3D Viewer"));
   viewer_final->setBackgroundColor (0, 0, 0);
-  //¶ÔÄ¿±êµãÔÆ×ÅÉ«£¨ºìÉ«£©²¢¿ÉÊÓ»¯
+  //å¯¹ç›®æ ‡ç‚¹äº‘ç€è‰²ï¼ˆçº¢è‰²ï¼‰å¹¶å¯è§†åŒ–
   pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ>
   target_color (target_cloud, 255, 0, 0);
   viewer_final->addPointCloud<pcl::PointXYZ> (target_cloud, target_color, "target cloud");
   viewer_final->setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE,
                                                   1, "target cloud");
-  //¶Ô×ª»»ºóµÄÄ¿±êµãÔÆ×ÅÉ«£¨ÂÌÉ«£©²¢¿ÉÊÓ»¯
+  //å¯¹è½¬æ¢åçš„ç›®æ ‡ç‚¹äº‘ç€è‰²ï¼ˆç»¿è‰²ï¼‰å¹¶å¯è§†åŒ–
   pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ>
   output_color (output_cloud, 0, 255, 0);
   viewer_final->addPointCloud<pcl::PointXYZ> (output_cloud, output_color, "output cloud");
   viewer_final->setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE,
                                                   1, "output cloud");
-  // Æô¶¯¿ÉÊÓ»¯
+  // å¯åŠ¨å¯è§†åŒ–
   viewer_final->addCoordinateSystem (1.0);
   viewer_final->initCameraParameters ();
-  //µÈ´ıÖ±µ½¿ÉÊÓ»¯´°¿Ú¹Ø±Õ¡£
+  //ç­‰å¾…ç›´åˆ°å¯è§†åŒ–çª—å£å…³é—­ã€‚
   while (!viewer_final->wasStopped ())
   {
     viewer_final->spinOnce (100);

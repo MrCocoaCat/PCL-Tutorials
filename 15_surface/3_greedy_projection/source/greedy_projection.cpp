@@ -1,4 +1,4 @@
-#include <pcl/point_types.h>
+ï»¿#include <pcl/point_types.h>
 #include <pcl/io/pcd_io.h>
 #include <pcl/kdtree/kdtree_flann.h>
 #include <pcl/features/normal_3d.h>
@@ -66,7 +66,7 @@ main (int argc, char** argv)
  
   viewer->addCoordinateSystem (1.0);
   viewer->initCameraParameters ();
-   // Ö÷Ñ­»·
+   // ä¸»å¾ªçŽ¯
   while (!viewer->wasStopped ())
   {
     viewer->spinOnce (100);
