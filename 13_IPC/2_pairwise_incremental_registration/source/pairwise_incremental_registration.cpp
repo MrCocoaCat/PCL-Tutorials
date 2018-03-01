@@ -20,10 +20,10 @@ typedef pcl::PointCloud<PointT> PointCloud;
 typedef pcl::PointNormal PointNormalT;
 typedef pcl::PointCloud<PointNormalT> PointCloudWithNormals;
 //这是一个辅助教程，因此我们可以负担全局变量
-	//创建可视化工具
-	pcl::visualization::PCLVisualizer *p;
-	//定义左右视点
-	int vp_1, vp_2;
+//创建可视化工具
+pcl::visualization::PCLVisualizer *p;
+//定义左右视点
+int vp_1, vp_2;
 //处理点云的方便的结构定义
 struct PCD
 {
@@ -31,6 +31,7 @@ struct PCD
   std::string f_name;
   PCD() : cloud (new PointCloud) {};
 };
+
 struct PCDComparator
 {
   bool operator () (const PCD& p1, const PCD& p2)
@@ -38,6 +39,7 @@ struct PCDComparator
     return (p1.f_name < p2.f_name);
   }
 };
+
 //以< x, y, z, curvature >形式定义一个新的点
 class MyPointRepresentation : public pcl::PointRepresentation <PointNormalT>
 {
@@ -58,10 +60,7 @@ public:
     out[3] = p.curvature;
   }
 };
-////////////////////////////////////////////////////////////////////////////////
-/** 在可视化窗口的第一视点显示源点云和目标点云
-*
- */
+/** 在可视化窗口的第一视点显示源点云和目标点云**/
 void showCloudsLeft(const PointCloud::Ptr cloud_target, const PointCloud::Ptr cloud_source)
 {
   p->removePointCloud ("vp1_target");
@@ -73,10 +72,8 @@ void showCloudsLeft(const PointCloud::Ptr cloud_target, const PointCloud::Ptr cl
   PCL_INFO ("Press q to begin the registration.\n");
   p-> spin();
 }
-////////////////////////////////////////////////////////////////////////////////
-/**在可视化窗口的第二视点显示源点云和目标点云
- *
- */
+
+/**在可视化窗口的第二视点显示源点云和目标点云* */
 void showCloudsRight(const PointCloudWithNormals::Ptr cloud_target, const PointCloudWithNormals::Ptr cloud_source)
 {
   p->removePointCloud ("source");
@@ -99,6 +96,7 @@ void showCloudsRight(const PointCloudWithNormals::Ptr cloud_target, const PointC
   */
 void loadData (int argc, char **argv, std::vector<PCD, Eigen::aligned_allocator<PCD> > &models)
 {
+
   std::string extension (".pcd");
   //假定第一个参数是实际测试模型
   for (int i = 1; i < argc; i++)
@@ -106,15 +104,21 @@ void loadData (int argc, char **argv, std::vector<PCD, Eigen::aligned_allocator<
     std::string fname = std::string (argv[i]);
     // 至少需要5个字符长（因为.plot就有 5个字符）
     if (fname.size () <= extension.size ())
+    {
       continue;
+    }
     std::transform (fname.begin (), fname.end (), fname.begin (), (int(*)(int))tolower);
+
     //检查参数是一个pcd文件
-    if (fname.compare (fname.size () - extension.size (), extension.size (), extension) == 0)
+    cout<<fname.size ()<<"  "<<extension.size ()<<endl;
+      cout<<fname<<endl;
+    if(fname.compare (fname.size () - extension.size (), extension.size (), extension) == 0)
     {
       //加载点云并保存在总体的模型列表中
       PCD m;
       m.f_name = argv[i];
       pcl::io::loadPCDFile (argv[i], *m.cloud);
+
       //从点云中移除NAN点
       std::vector<int> indices;
       pcl::removeNaNFromPointCloud(*m.cloud,*m.cloud, indices);
@@ -122,13 +126,13 @@ void loadData (int argc, char **argv, std::vector<PCD, Eigen::aligned_allocator<
     }
   }
 }
-////////////////////////////////////////////////////////////////////////////////
+
 /**匹配一对点云数据集并且返还结果
   *参数 cloud_src 是源点云
   *参数 cloud_src 是目标点云
   *参数output输出的配准结果的源点云
   *参数final_transform是在来源和目标之间的转换
-  */
+ */
 void pairAlign (const PointCloud::Ptr cloud_src, const PointCloud::Ptr cloud_tgt, PointCloud::Ptr output, Eigen::Matrix4f &final_transform, bool downsample = false)
 {
   //
@@ -169,7 +173,6 @@ void pairAlign (const PointCloud::Ptr cloud_src, const PointCloud::Ptr cloud_tgt
   //调整'curvature'尺寸权重以便使它和x, y, z平衡
   float alpha[4] = {1.0, 1.0, 1.0, 1.0};
   point_representation.setRescaleValues (alpha);
-  //
   // 配准
   pcl::IterativeClosestPointNonLinear<PointNormalT, PointNormalT> reg;
   reg.setTransformationEpsilon (1e-6);
@@ -180,7 +183,6 @@ void pairAlign (const PointCloud::Ptr cloud_src, const PointCloud::Ptr cloud_tgt
   reg.setPointRepresentation (boost::make_shared<const MyPointRepresentation> (point_representation));
   reg.setInputCloud (points_with_normals_src);
   reg.setInputTarget (points_with_normals_tgt);
-  //
   //在一个循环中运行相同的最优化并且使结果可视化
   Eigen::Matrix4f Ti = Eigen::Matrix4f::Identity (), prev, targetToSource;
   PointCloudWithNormals::Ptr reg_result = points_with_normals_src;
@@ -192,21 +194,20 @@ void pairAlign (const PointCloud::Ptr cloud_src, const PointCloud::Ptr cloud_tgt
     points_with_normals_src = reg_result;
     //估计
     reg.setInputCloud (points_with_normals_src);
+      //reg.setInputSource(points_with_normals_src);
     reg.align (*reg_result);
-		//在每一个迭代之间累积转换
+    //在每一个迭代之间累积转换
     Ti = reg.getFinalTransformation () * Ti;
-		//如果这次转换和之前转换之间的差异小于阈值
-		//则通过减小最大对应距离来改善程序
+    //如果这次转换和之前转换之间的差异小于阈值
+    //则通过减小最大对应距离来改善程序
     if (fabs ((reg.getLastIncrementalTransformation () - prev).sum ()) < reg.getTransformationEpsilon ())
       reg.setMaxCorrespondenceDistance (reg.getMaxCorrespondenceDistance () - 0.001);
       prev = reg.getLastIncrementalTransformation ();
     //可视化当前状态
     showCloudsRight(points_with_normals_tgt, points_with_normals_src);
   }
-	//
   // 得到目标点云到源点云的变换
   targetToSource = Ti.inverse();
-  //
   //把目标点云转换回源框架
   pcl::transformPointCloud (*cloud_tgt, *output, targetToSource);
   p->removePointCloud ("source");
@@ -215,19 +216,24 @@ void pairAlign (const PointCloud::Ptr cloud_src, const PointCloud::Ptr cloud_tgt
   PointCloudColorHandlerCustom<PointT> cloud_src_h (cloud_src, 255, 0, 0);
   p->addPointCloud (output, cloud_tgt_h, "target", vp_2);
   p->addPointCloud (cloud_src, cloud_src_h, "source", vp_2);
-	PCL_INFO ("Press q to continue the registration.\n");
+
+  PCL_INFO ("Press q to continue the registration.\n");
+
   p->spin ();
   p->removePointCloud ("source"); 
   p->removePointCloud ("target");
   //添加源点云到转换目标
   *output += *cloud_src;
-    final_transform = targetToSource;
+  final_transform = targetToSource;
  }
+
+
 /* ---[ */
 int main (int argc, char** argv)
 {
-  // 加载数据
-  std::vector<PCD, Eigen::aligned_allocator<PCD> > data;
+  // 加载数据，存放PCD的容器
+  std::vector<PCD, Eigen::aligned_allocator<PCD> >  data;
+  //调用loadData 函数，将数据放入容器中
   loadData (argc, argv, data);
   //检查用户输入
   if (data.empty ())
@@ -237,14 +243,17 @@ int main (int argc, char** argv)
     PCL_INFO ("Example: %s `rospack find pcl`/test/bun0.pcd `rospack find pcl`/test/bun4.pcd", argv[0]);
     return (-1);
   }
+
   PCL_INFO ("Loaded %d datasets.", (int)data.size ());
-    //创建一个PCL可视化对象
+
+  //创建一个PCL可视化对象
   p = new pcl::visualization::PCLVisualizer (argc, argv, "Pairwise Incremental Registration example");
   p->createViewPort (0.0, 0, 0.5, 1.0, vp_1);
   p->createViewPort (0.5, 0, 1.0, 1.0, vp_2);
-	PointCloud::Ptr result (new PointCloud), source, target;
+  PointCloud::Ptr result (new PointCloud), source, target;
   Eigen::Matrix4f GlobalTransform = Eigen::Matrix4f::Identity (), pairTransform;
-    for (size_t i = 1; i < data.size (); ++i)
+
+  for (size_t i = 1; i < data.size (); ++i)
   {
     source = data[i-1].cloud;
     target = data[i].cloud;
@@ -257,10 +266,12 @@ int main (int argc, char** argv)
     pcl::transformPointCloud (*temp, *result, GlobalTransform);
     //update the global transform更新全局变换
     GlobalTransform = pairTransform * GlobalTransform;
-		//保存配准对，转换到第一个点云框架中
+    //保存配准对，转换到第一个点云框架中
     std::stringstream ss;
+
     ss << i << ".pcd";
     pcl::io::savePCDFile (ss.str (), *result, true);
   }
+
 }
 /* ]--- */
