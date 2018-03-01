@@ -1,3 +1,0 @@
-/home/liyubo/liyubo/PCL-Tutorials/viewer/build/CMakeFiles/rebuild_cache.dir
-/home/liyubo/liyubo/PCL-Tutorials/viewer/build/CMakeFiles/edit_cache.dir
-/home/liyubo/liyubo/PCL-Tutorials/viewer/build/CMakeFiles/cloud_viewer.dir

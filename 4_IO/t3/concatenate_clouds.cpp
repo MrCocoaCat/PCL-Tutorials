@@ -12,6 +12,7 @@ int
     exit(0);
   }
   pcl::PointCloud<pcl::PointXYZ> cloud_a, cloud_b, cloud_c;
+
   pcl::PointCloud<pcl::Normal> n_cloud_b; //储存进行链接时需要的normal点云
   pcl::PointCloud<pcl::PointNormal> p_n_cloud_c; //储存链接XYZ与normal 后的点云
 
