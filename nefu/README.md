@@ -1,1 +1,6 @@
-In this tutorial we will learn how to use an ExtractIndices filter to extract a subset of points from a point cloud based on the indices output by a segmentation algorithm. In order to not complicate the tutorial, the segmentation algorithm is not explained here. Please check the Plane model segmentation tutorial for more information.
+
+###滤波之前图像
+ ![Alt text](./pic/org.png)
+
+###滤波之后图像
+ ![Alt text](./pic/filtered.png)
