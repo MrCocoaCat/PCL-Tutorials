@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <pcl/io/pcd_io.h>
 #include <pcl/point_types.h>
 #include <pcl/registration/icp.h>
@@ -6,7 +6,7 @@ int main (int argc, char** argv)
 {
 	pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_in (new pcl::PointCloud<pcl::PointXYZ>);
 	pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_out (new pcl::PointCloud<pcl::PointXYZ>);
-	// ¿¿¿¿¿¿¿
+	// é é é ?
 	cloud_in->width    = 5;
 	cloud_in->height   = 1;
 	cloud_in->is_dense = false;
@@ -39,12 +39,12 @@ int main (int argc, char** argv)
 	}
 	pcl::IterativeClosestPoint<pcl::PointXYZ, pcl::PointXYZ> icp;
 
-	icp.setInputCloud(cloud_in);//¿¿¿¿
-	icp.setInputTarget(cloud_out);//¿¿¿¿
-	pcl::PointCloud<pcl::PointXYZ> Final;//¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿
-	icp.align(Final);//¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿Final
+	icp.setInputCloud(cloud_in);//é é 
+	icp.setInputTarget(cloud_out);//é é 
+	pcl::PointCloud<pcl::PointXYZ> Final;//é é é é é é é é 
+	icp.align(Final);//é é é é é é é ç¸inal
 	std::cout << "has converged:" << icp.hasConverged() << " score: " <<
 		icp.getFitnessScore() << std::endl;
-	std::cout << icp.getFinalTransformation() << std::endl;//¿¿¿¿¿¿
+	std::cout << icp.getFinalTransformation() << std::endl;//é é é 
 	return (0);
 }
