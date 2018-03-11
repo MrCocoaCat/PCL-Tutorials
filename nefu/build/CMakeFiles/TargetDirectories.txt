@@ -1,3 +1,0 @@
-/home/liyubo/Code/PCL-Tutorials/8_Filterings/t6/build/CMakeFiles/edit_cache.dir
-/home/liyubo/Code/PCL-Tutorials/8_Filterings/t6/build/CMakeFiles/rebuild_cache.dir
-/home/liyubo/Code/PCL-Tutorials/8_Filterings/t6/build/CMakeFiles/extract_indices.dir

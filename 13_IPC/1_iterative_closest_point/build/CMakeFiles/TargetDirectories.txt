@@ -1,3 +1,0 @@
-/home/liyubo/Code/PCL-Tutorials/13_IPC/1_iterative_closest_point/build/CMakeFiles/edit_cache.dir
-/home/liyubo/Code/PCL-Tutorials/13_IPC/1_iterative_closest_point/build/CMakeFiles/rebuild_cache.dir
-/home/liyubo/Code/PCL-Tutorials/13_IPC/1_iterative_closest_point/build/CMakeFiles/iterative_closest_point.dir
