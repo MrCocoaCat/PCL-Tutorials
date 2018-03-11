@@ -9,12 +9,14 @@
 #include <pcl/filters/voxel_grid.h>
 #include <pcl/filters/extract_indices.h>
 #include <pcl/filters/passthrough.h>
-
+#include <pcl/io/ply_io.h>
 int main (int argc, char** argv)
 {
   pcl::PCLPointCloud2::Ptr cloud_blob (new pcl::PCLPointCloud2), cloud_filtered_blob (new pcl::PCLPointCloud2);
-  pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered (new pcl::PointCloud<pcl::PointXYZ>), cloud_p (new pcl::PointCloud<pcl::PointXYZ>), cloud_f (new pcl::PointCloud<pcl::PointXYZ>);
-
+  pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered (new pcl::PointCloud<pcl::PointXYZ>),
+          cloud_p (new pcl::PointCloud<pcl::PointXYZ>),
+          cloud_f (new pcl::PointCloud<pcl::PointXYZ>);
+    pcl::PointCloud<pcl::PointXYZ>::Ptr x_cloud_filtered (new pcl::PointCloud<pcl::PointXYZ>);
   // Fill in the cloud data
   pcl::PCDReader reader;
   //reader.read ("../table_scene_lms400.pcd", *cloud_blob);
@@ -64,10 +66,21 @@ int main (int argc, char** argv)
   pass.filter (*cloud_filtered);//执行后的结果
 
 
+
   std::cout<<org->points.size()<<"  "<<cloud_filtered->points.size ()<<std::endl;
 
-    pcl::fromPCLPointCloud2 (*cloud_filtered_blob, *vol);
-    wr1.write<pcl::PointXYZ> ("pass.pcd", *cloud_filtered, false);
+  pcl::fromPCLPointCloud2 (*cloud_filtered_blob, *vol);
+  wr1.write<pcl::PointXYZ> ("pass.pcd", *cloud_filtered, false);
+
+
+    pcl::PassThrough<pcl::PointXYZ> passx;//滤波器对象
+    passx.setInputCloud (org);  //设置输入点云
+    passx.setFilterFieldName ("x"); // 设置在x轴上滤波
+    passx.setFilterLimits (-0.8, 0.8); //范围
+    passx.setFilterLimitsNegative (false);
+
+    passx.filter (*x_cloud_filtered);//执行后的结果
+    wr1.write<pcl::PointXYZ> ("passx.pcd", *x_cloud_filtered, false);
 
 
 //  pcl::PCDWriter wri;

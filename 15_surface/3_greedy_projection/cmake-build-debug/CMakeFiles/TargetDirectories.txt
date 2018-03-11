@@ -1,3 +1,0 @@
-/home/liyubo/Code/PCL-Tutorials/15_surface/3_greedy_projection/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/liyubo/Code/PCL-Tutorials/15_surface/3_greedy_projection/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/liyubo/Code/PCL-Tutorials/15_surface/3_greedy_projection/cmake-build-debug/CMakeFiles/greedy_projection.dir

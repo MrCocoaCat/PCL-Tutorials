@@ -73,8 +73,7 @@ main (int argc, char** argv)
   pcl::NormalEstimation<PointT, pcl::Normal> ne;
   pcl::SACSegmentationFromNormals<PointT, pcl::Normal> seg; 
   pcl::PCDWriter writer;
-  pcl::ExtractIndices<PointT> extract;
-  pcl::ExtractIndices<pcl::Normal> extract_normals;
+
   pcl::search::KdTree<PointT>::Ptr tree (new pcl::search::KdTree<PointT> ());
 
   // Datasets
@@ -87,9 +86,9 @@ main (int argc, char** argv)
   pcl::PointIndices::Ptr inliers_plane (new pcl::PointIndices), inliers_cylinder (new pcl::PointIndices);
 
   // Read in the cloud data
-  reader.read ("one_frame_std.pcd", *cloud);
+  reader.read (argv[1], *cloud);
 
-    cloudview("one_frame_std.pcd.pcd");
+    //cloudview("one_frame_std.pcd.pcd");
 
   std::cerr << "PointCloud has: " << cloud->points.size () << " data points." << std::endl;
 
@@ -108,7 +107,7 @@ main (int argc, char** argv)
 
   // Create the segmentation object for the planar model and set all the parameters
   seg.setOptimizeCoefficients (true);
-  seg.setModelType (pcl::SACMODEL_NORMAL_PLANE);
+  seg.setModelType (pcl::SACMODEL_NORMAL_PLANE); //设置形状
   seg.setNormalDistanceWeight (0.1);
   seg.setMethodType (pcl::SAC_RANSAC);
   seg.setMaxIterations (100);
@@ -120,6 +119,8 @@ main (int argc, char** argv)
   std::cerr << "Plane coefficients: " << *coefficients_plane << std::endl;
 
   // Extract the planar inliers from the input cloud
+  pcl::ExtractIndices<PointT> extract;
+  pcl::ExtractIndices<pcl::Normal> extract_normals;
   extract.setInputCloud (cloud_filtered);
   extract.setIndices (inliers_plane);
   extract.setNegative (false);
@@ -130,7 +131,9 @@ main (int argc, char** argv)
   std::cerr << "PointCloud representing the planar component: " << cloud_plane->points.size () << " data points." << std::endl;
   writer.write ("one_frame_std_plane.pcd", *cloud_plane, false);
 
-    cloudview("one_frame_std_plane.pcd");
+  cloudview("one_frame_std_plane.pcd");
+
+
 
   // Remove the planar inliers, extract the rest
   extract.setNegative (true);
@@ -139,10 +142,9 @@ main (int argc, char** argv)
   extract_normals.setInputCloud (cloud_normals);
   extract_normals.setIndices (inliers_plane);
   extract_normals.filter (*cloud_normals2);
-
   // Create the segmentation object for cylinder segmentation and set all the parameters
   seg.setOptimizeCoefficients (true);
-  seg.setModelType (pcl::SACMODEL_CYLINDER);
+  seg.setModelType (pcl::SACMODEL_CYLINDER); //圆柱体
   seg.setMethodType (pcl::SAC_RANSAC);
   seg.setNormalDistanceWeight (0.1);
   seg.setMaxIterations (10000);
