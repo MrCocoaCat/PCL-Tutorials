@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named icp
+
+# Build rule for target.
+icp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 icp
+.PHONY : icp
+
+# fast build rule for target.
+icp/fast:
+	$(MAKE) -f CMakeFiles/icp.dir/build.make CMakeFiles/icp.dir/build
+.PHONY : icp/fast
+
+#=============================================================================
 # Target rules for targets named pairwise_incremental_registration
 
 # Build rule for target.
@@ -122,6 +135,33 @@ pairwise_incremental_registration: cmake_check_build_system
 pairwise_incremental_registration/fast:
 	$(MAKE) -f CMakeFiles/pairwise_incremental_registration.dir/build.make CMakeFiles/pairwise_incremental_registration.dir/build
 .PHONY : pairwise_incremental_registration/fast
+
+icp.o: icp.cpp.o
+
+.PHONY : icp.o
+
+# target to build an object file
+icp.cpp.o:
+	$(MAKE) -f CMakeFiles/icp.dir/build.make CMakeFiles/icp.dir/icp.cpp.o
+.PHONY : icp.cpp.o
+
+icp.i: icp.cpp.i
+
+.PHONY : icp.i
+
+# target to preprocess a source file
+icp.cpp.i:
+	$(MAKE) -f CMakeFiles/icp.dir/build.make CMakeFiles/icp.dir/icp.cpp.i
+.PHONY : icp.cpp.i
+
+icp.s: icp.cpp.s
+
+.PHONY : icp.s
+
+# target to generate assembly for a file
+icp.cpp.s:
+	$(MAKE) -f CMakeFiles/icp.dir/build.make CMakeFiles/icp.dir/icp.cpp.s
+.PHONY : icp.cpp.s
 
 pairwise_incremental_registration.o: pairwise_incremental_registration.cpp.o
 
@@ -158,7 +198,11 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... icp"
 	@echo "... pairwise_incremental_registration"
+	@echo "... icp.o"
+	@echo "... icp.i"
+	@echo "... icp.s"
 	@echo "... pairwise_incremental_registration.o"
 	@echo "... pairwise_incremental_registration.i"
 	@echo "... pairwise_incremental_registration.s"

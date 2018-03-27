@@ -9,3 +9,5 @@ add_definitions(${PCL_DEFINITIONS})
 add_executable (pairwise_incremental_registration pairwise_incremental_registration.cpp)
 target_link_libraries (pairwise_incremental_registration ${PCL_LIBRARIES})
 
+add_executable (icp icp.cpp)
+target_link_libraries (icp ${PCL_LIBRARIES})
